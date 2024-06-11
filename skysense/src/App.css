@@ -51,8 +51,9 @@
 
 .midCard {
   width: 100%;
-  background-color: #252526;
+  background-color: #252526 !important;
   border-color: #252526 !important;
+  align-items: center;
   text-align: center;
 }
 
@@ -63,6 +64,12 @@
 .cardText {
   background-color: #252526;
   color: white;
+}
+
+.midImg {
+  background-color: #252526;
+  height: 200px !important;
+  width: 200px !important;
 }
 
 

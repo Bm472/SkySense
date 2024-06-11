@@ -35,11 +35,11 @@ function App() {
             <Card className="leftCard">
               <CardBody className="cardBody">
                 <CardText className="cardText">
-                  Precipitation: {weather.precip}<br/>
+                  Precipitation: {weather.precip}mm<br/>
                   Precipitation Chance: {weather.precipprob}%<br/>
                   Precipitation Type: {weather.preciptype == null ? "N/A" : weather.preciptype}<br/>
-                  Snow: {weather.snow}<br/>
-                  Snow Depth: {weather.snowdepth}
+                  Snow: {weather.snow}cm<br/>
+                  Snow Depth: {weather.snowdepth}cm
                 </CardText>
               </CardBody>
             </Card>
@@ -47,8 +47,8 @@ function App() {
             <Card className="leftCard">
               <CardBody className="cardBody">
                 <CardText className="cardText">
-                  Humidity: {weather.humidity} <br />
-                  Dew: {weather.dew}
+                  Humidity: {weather.humidity}% <br />
+                  Dew Point: {weather.dew}&deg;C
                   
                 </CardText>
               </CardBody>
@@ -56,16 +56,18 @@ function App() {
           </Col>
           <Col className="midCol">
             <Card className="midCard">
-              <Card.Img variant="top"></Card.Img>
+              <Card.Img variant="top" src={`/Icons/${weather.icon}.png`} className="midImg"></Card.Img>
               <CardBody className="cardBody">
                 <CardText className="cardText">
-                  {weather.conditions}<br />
-                  {weather.temp}C<br />
-                  Feels Like: {weather.feelslike}C<br />
+                  <CardText style={{fontSize: "20px"}}>
+                    {weather.conditions}<br />
+                    {weather.temp}&deg;C<br />
+                  </CardText>
+                  Feels Like: {weather.feelslike}&deg;C<br />
                   Icon: {weather.icon}<br />
                   UV Index: {weather.uvindex}<br />
-                  Cloud Cover: {weather.cloudcover}<br />
-                  Visibility: {weather.visibility}
+                  Cloud Cover: {weather.cloudcover}%<br />
+                  Visibility: {weather.visibility} miles
                 </CardText>
               </CardBody>
             </Card>
@@ -74,10 +76,10 @@ function App() {
           <Card className="rightCard">
               <CardBody className="cardBody">
                 <CardText className="cardText">
-                  Wind Direction: {weather.winddir}<br />
-                  Wind Gust: {weather.windgust}<br />
-                  Wind Speed: {weather.windspeed}<br />
-                  Pressure: {weather.pressure}
+                  Wind Direction: {windDirection(weather.winddir)}<br />
+                  Wind Gust: {weather.windgust}mph<br />
+                  Wind Speed: {weather.windspeed}mph<br />
+                  Pressure: {weather.pressure}mb
                 </CardText>
               </CardBody>
             </Card>
@@ -117,6 +119,18 @@ function showPosition(position) {
     }
 ));
   
+}
+
+function windDirection(direction) {
+  if(direction <= 22.5) return "N";
+  else if(direction <= 67.5) return "NE";
+  else if(direction <= 112.5) return "E";
+  else if(direction <= 157.5) return "SE";
+  else if(direction <= 202.5) return "S";
+  else if(direction <= 247.5) return "SW";
+  else if(direction <= 292.5) return "W";
+  else if(direction <= 337.5) return "NW";
+  else return "N";
 }
 
 
