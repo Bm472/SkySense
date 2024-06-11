@@ -1,6 +1,11 @@
 import './App.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import { CardBody, CardSubtitle, CardText } from 'react-bootstrap';
 
 function App() {
 
@@ -11,31 +16,85 @@ function App() {
 
   return (
     <>
-      <header className="App-header">
-        {city}
-        <div>Cloud Cover: {weather.cloudcover}</div>
-        <div>Conditions: {weather.conditions}</div>
-        <div>Date/Time: {weather.datetime}</div>
-        <div>Dew: {weather.dew}</div>
-        <div>Feels Like: {weather.feelslike}C</div>
-        <div>Humidity: {weather.humidity}</div>
-        <div>Icon: {weather.icon}</div>
-        <div>Moon Phase: {weather.moonphase}</div>
-        <div>Precipitation: {weather.precip}</div>
-        <div>Precipitation Chance: {weather.precipprob}%</div>
-        <div>Precipitation Type: {weather.preciptype}</div>
-        <div>Pressure: {weather.pressure}</div>
-        <div>Snow: {weather.snow}</div>
-        <div>Snow Depth: {weather.snowdepth}</div>
-        <div>Sunrise: {weather.sunrise}</div>
-        <div>Sunset: {weather.sunset}</div>
-        <div>Temperature: {weather.temp}</div>
-        <div>UV Index: {weather.uvindex}</div>
-        <div>Visibility: {weather.visibility}</div>
-        <div>Wind Direction: {weather.winddir}</div>
-        <div>Wind Gust: {weather.windgust}</div>
-        <div>Wind Speed: {weather.windspeed}</div>
-      </header>
+      <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></link>
+      <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"></link>
+      </head>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <body>
+        <Container className="mainContainer">
+          <br /><br /><br /><br />
+          <Row className="rowHeader">{city}</Row>
+          <Row className="rowHeader">{weather.datetime}</Row>
+          <Row>
+          <Col className="leftCol">
+            <Card className="leftCard">
+              <CardBody className="cardBody">
+                <CardText className="cardText">
+                  Precipitation: {weather.precip}<br/>
+                  Precipitation Chance: {weather.precipprob}%<br/>
+                  Precipitation Type: {weather.preciptype == null ? "N/A" : weather.preciptype}<br/>
+                  Snow: {weather.snow}<br/>
+                  Snow Depth: {weather.snowdepth}
+                </CardText>
+              </CardBody>
+            </Card>
+            <br />
+            <Card className="leftCard">
+              <CardBody className="cardBody">
+                <CardText className="cardText">
+                  Humidity: {weather.humidity} <br />
+                  Dew: {weather.dew}
+                  
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col className="midCol">
+            <Card className="midCard">
+              <Card.Img variant="top"></Card.Img>
+              <CardBody className="cardBody">
+                <CardText className="cardText">
+                  {weather.conditions}<br />
+                  {weather.temp}C<br />
+                  Feels Like: {weather.feelslike}C<br />
+                  Icon: {weather.icon}<br />
+                  UV Index: {weather.uvindex}<br />
+                  Cloud Cover: {weather.cloudcover}<br />
+                  Visibility: {weather.visibility}
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col className="rightCol">
+          <Card className="rightCard">
+              <CardBody className="cardBody">
+                <CardText className="cardText">
+                  Wind Direction: {weather.winddir}<br />
+                  Wind Gust: {weather.windgust}<br />
+                  Wind Speed: {weather.windspeed}<br />
+                  Pressure: {weather.pressure}
+                </CardText>
+              </CardBody>
+            </Card>
+            <br />
+            <Card className="rightCard">
+              <CardBody className="cardBody">
+                <CardText className="cardText">
+                  Sunrise: {weather.sunrise}<br />
+                  Sunset: {weather.sunset}<br />
+                  Moon Phase: {weather.moonphase}
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          </Row>
+        </Container>
+      </body>
     </>
   );
 
